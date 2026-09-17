@@ -25,7 +25,6 @@ export const getProjectAction = createAction({
       displayName: 'Project ID',
       description: 'Project ID returned by a Magic Hour creation action.',
       required: true,
-      placeholder: 'cuid-example',
     }),
   },
   async run(context) {

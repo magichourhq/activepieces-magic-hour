@@ -14,14 +14,12 @@ export const faceSwapPhotoAction = createAction({
       description:
         'Image whose detected faces will be replaced. Use a direct URL or Magic Hour file path.',
       required: true,
-      placeholder: 'https://example.com/target.png',
     }),
     source_file_path: Property.ShortText({
       displayName: 'Source Face Image',
       description:
         'Image containing the replacement face. Use a direct URL or Magic Hour file path.',
       required: true,
-      placeholder: 'https://example.com/source.png',
     }),
     name: Property.ShortText({
       displayName: 'Project Name',

@@ -32,7 +32,6 @@ export const generateUploadUrlsAction = createAction({
           description:
             'Lowercase extension without a dot, such as png, mp4, or mp3.',
           required: true,
-          placeholder: 'png',
         }),
       },
     }),

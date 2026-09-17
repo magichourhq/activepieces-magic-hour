@@ -14,14 +14,12 @@ export const talkingPhotoAction = createAction({
       description:
         'Photo to animate. Use a direct image URL or Magic Hour file path.',
       required: true,
-      placeholder: 'https://example.com/person.png',
     }),
     audio_file_path: Property.ShortText({
       displayName: 'Audio Track',
       description:
         'Speech audio to synchronize. Use a direct audio URL or Magic Hour file path.',
       required: true,
-      placeholder: 'https://example.com/speech.mp3',
     }),
     start_seconds: Property.Number({
       displayName: 'Start Time',

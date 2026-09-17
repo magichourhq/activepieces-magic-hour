@@ -14,7 +14,6 @@ export const imageToVideoAction = createAction({
       description:
         'A direct image URL or file_path returned by Generate Asset Upload URLs.',
       required: true,
-      placeholder: 'https://example.com/source.png',
     }),
     prompt: Property.LongText({
       displayName: 'Motion Prompt',
