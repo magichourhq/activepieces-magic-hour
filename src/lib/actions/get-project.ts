@@ -6,15 +6,8 @@ import { magicHourApi } from '../common/client';
 export const getProjectAction = createAction({
   auth: magicHourAuth,
   name: 'get_project',
-  classification: 'READ',
   displayName: 'Get Project',
   description: 'Get status, errors, credit charge, and downloads for a project.',
-  audience: 'both',
-  aiMetadata: {
-    description:
-      'Read a Magic Hour image, video, or audio project by ID. Use after a generation action to poll until the status is complete, error, or canceled, then consume the returned download URLs. Safe to retry.',
-    idempotent: true,
-  },
   props: {
     project_type: Property.StaticDropdown({
       displayName: 'Project Type',

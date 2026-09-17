@@ -6,15 +6,8 @@ import { magicHourApi } from '../common/client';
 export const textToVideoAction = createAction({
   auth: magicHourAuth,
   name: 'text_to_video',
-  classification: 'WRITE',
   displayName: 'Create Video From Text',
   description: 'Start a video generation job from a text prompt.',
-  audience: 'both',
-  aiMetadata: {
-    description:
-      'Start a credit-consuming Magic Hour text-to-video job and return its project ID. Use Get Project with type Video for completion and downloads. Each retry starts another generation.',
-    idempotent: false,
-  },
   props: {
     prompt: Property.LongText({
       displayName: 'Prompt',
@@ -27,19 +20,17 @@ export const textToVideoAction = createAction({
         'Video duration in seconds. Supported values depend on the model.',
       required: true,
       defaultValue: 5,
-      min: 1,
     }),
     aspect_ratio: Property.StaticDropdown({
       displayName: 'Aspect Ratio',
       description: 'Shape of the generated video.',
       required: true,
       defaultValue: '16:9',
-      display: 'cards',
       options: {
         options: [
-          { label: 'Landscape', value: '16:9', description: '16:9' },
-          { label: 'Portrait', value: '9:16', description: '9:16' },
-          { label: 'Square', value: '1:1', description: '1:1' },
+          { label: 'Landscape', value: '16:9' },
+          { label: 'Portrait', value: '9:16' },
+          { label: 'Square', value: '1:1' },
         ],
       },
     }),
@@ -94,7 +85,6 @@ export const textToVideoAction = createAction({
       displayName: 'Project Name',
       description: 'Optional name shown in the Magic Hour project list.',
       required: false,
-      advanced: true,
     }),
   },
   async run(context) {

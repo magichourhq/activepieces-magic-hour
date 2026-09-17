@@ -6,15 +6,8 @@ import { magicHourApi } from '../common/client';
 export const faceSwapPhotoAction = createAction({
   auth: magicHourAuth,
   name: 'face_swap_photo',
-  classification: 'WRITE',
   displayName: 'Face Swap Photo',
   description: 'Start a photo face-swap job using source and target images.',
-  audience: 'both',
-  aiMetadata: {
-    description:
-      'Start a credit-consuming Magic Hour photo face swap using one source face for every detected face in the target. Inputs may be direct image URLs or Magic Hour file paths. Use Get Project with type Image for completion and downloads. Each retry starts another generation.',
-    idempotent: false,
-  },
   props: {
     target_file_path: Property.ShortText({
       displayName: 'Target Image',
@@ -34,7 +27,6 @@ export const faceSwapPhotoAction = createAction({
       displayName: 'Project Name',
       description: 'Optional name shown in the Magic Hour project list.',
       required: false,
-      advanced: true,
     }),
   },
   async run(context) {

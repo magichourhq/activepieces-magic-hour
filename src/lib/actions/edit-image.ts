@@ -6,15 +6,8 @@ import { magicHourApi } from '../common/client';
 export const editImageAction = createAction({
   auth: magicHourAuth,
   name: 'edit_image',
-  classification: 'WRITE',
   displayName: 'Edit Image',
   description: 'Start an AI image editing job from source images and a prompt.',
-  audience: 'both',
-  aiMetadata: {
-    description:
-      'Start a credit-consuming Magic Hour image-editing job using one or more direct image URLs or Magic Hour file paths. Use Get Project with type Image for completion and downloads. Each retry starts another generation.',
-    idempotent: false,
-  },
   props: {
     image_file_paths: Property.Array({
       displayName: 'Source Images',
@@ -102,7 +95,6 @@ export const editImageAction = createAction({
       displayName: 'Project Name',
       description: 'Optional name shown in the Magic Hour project list.',
       required: false,
-      advanced: true,
     }),
   },
   async run(context) {

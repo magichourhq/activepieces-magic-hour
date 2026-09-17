@@ -6,15 +6,8 @@ import { magicHourApi } from '../common/client';
 export const imageToVideoAction = createAction({
   auth: magicHourAuth,
   name: 'image_to_video',
-  classification: 'WRITE',
   displayName: 'Create Video From Image',
   description: 'Start a video generation job from a still image.',
-  audience: 'both',
-  aiMetadata: {
-    description:
-      'Animate a direct image URL or Magic Hour file path into a credit-consuming video job. Use Get Project with type Video for completion and downloads. Each retry starts another generation.',
-    idempotent: false,
-  },
   props: {
     image_file_path: Property.ShortText({
       displayName: 'Source Image',
@@ -34,7 +27,6 @@ export const imageToVideoAction = createAction({
         'Video duration in seconds. Supported values depend on the model.',
       required: true,
       defaultValue: 5,
-      min: 1,
     }),
     model: Property.StaticDropdown({
       displayName: 'Model',
@@ -88,13 +80,11 @@ export const imageToVideoAction = createAction({
       description:
         'Optional direct image URL or Magic Hour file path for the final frame. Only some models support this.',
       required: false,
-      advanced: true,
     }),
     name: Property.ShortText({
       displayName: 'Project Name',
       description: 'Optional name shown in the Magic Hour project list.',
       required: false,
-      advanced: true,
     }),
   },
   async run(context) {

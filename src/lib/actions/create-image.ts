@@ -6,15 +6,8 @@ import { magicHourApi } from '../common/client';
 export const createImageAction = createAction({
   auth: magicHourAuth,
   name: 'create_image',
-  classification: 'WRITE',
   displayName: 'Create Image',
   description: 'Start an AI image generation job from a text prompt.',
-  audience: 'both',
-  aiMetadata: {
-    description:
-      'Start a credit-consuming Magic Hour text-to-image job and return its project ID. Use Get Project with type Image to retrieve status and downloads. Each retry starts another generation.',
-    idempotent: false,
-  },
   props: {
     prompt: Property.LongText({
       displayName: 'Prompt',
@@ -27,10 +20,6 @@ export const createImageAction = createAction({
         'Number of images to generate. Model-specific limits may be lower.',
       required: true,
       defaultValue: 1,
-      display: 'stepper',
-      min: 1,
-      max: 16,
-      step: 1,
     }),
     model: Property.StaticDropdown({
       displayName: 'Model',
@@ -61,12 +50,11 @@ export const createImageAction = createAction({
       description: 'Shape of the generated image.',
       required: true,
       defaultValue: '1:1',
-      display: 'cards',
       options: {
         options: [
-          { label: 'Square', value: '1:1', description: '1:1' },
-          { label: 'Landscape', value: '16:9', description: '16:9' },
-          { label: 'Portrait', value: '9:16', description: '9:16' },
+          { label: 'Square', value: '1:1' },
+          { label: 'Landscape', value: '16:9' },
+          { label: 'Portrait', value: '9:16' },
         ],
       },
     }),
@@ -89,7 +77,6 @@ export const createImageAction = createAction({
       displayName: 'Project Name',
       description: 'Optional name shown in the Magic Hour project list.',
       required: false,
-      advanced: true,
     }),
   },
   async run(context) {

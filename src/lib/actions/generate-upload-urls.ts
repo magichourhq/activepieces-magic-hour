@@ -6,15 +6,8 @@ import { magicHourApi } from '../common/client';
 export const generateUploadUrlsAction = createAction({
   auth: magicHourAuth,
   name: 'generate_upload_urls',
-  classification: 'WRITE',
   displayName: 'Generate Asset Upload URLs',
   description: 'Create signed URLs for uploading source media to Magic Hour.',
-  audience: 'both',
-  aiMetadata: {
-    description:
-      'Create ordered, expiring upload URLs and Magic Hour file paths for source images, videos, or audio. Use before a generation action when the input is not already available at a direct public URL. Each call creates new signed URLs.',
-    idempotent: false,
-  },
   props: {
     items: Property.Array({
       displayName: 'Assets',

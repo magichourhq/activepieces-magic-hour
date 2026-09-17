@@ -1,5 +1,6 @@
 import { createCustomApiCallAction } from '@activepieces/pieces-common';
-import { createPiece, PieceCategory } from '@activepieces/pieces-framework';
+import { createPiece } from '@activepieces/pieces-framework';
+import { PieceCategory } from '@activepieces/shared';
 import { createImageAction } from './lib/actions/create-image';
 import { editImageAction } from './lib/actions/edit-image';
 import { faceSwapPhotoAction } from './lib/actions/face-swap-photo';

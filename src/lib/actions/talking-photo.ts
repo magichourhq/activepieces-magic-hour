@@ -6,15 +6,8 @@ import { magicHourApi } from '../common/client';
 export const talkingPhotoAction = createAction({
   auth: magicHourAuth,
   name: 'talking_photo',
-  classification: 'WRITE',
   displayName: 'Create Talking Photo',
   description: 'Animate a photo to speak along with an audio track.',
-  audience: 'both',
-  aiMetadata: {
-    description:
-      'Start a credit-consuming talking-photo video from an image and audio file. Inputs may be direct URLs or Magic Hour file paths. Use Get Project with type Video for completion and downloads. Each retry starts another generation.',
-    idempotent: false,
-  },
   props: {
     image_file_path: Property.ShortText({
       displayName: 'Source Image',
@@ -35,13 +28,11 @@ export const talkingPhotoAction = createAction({
       description: 'Start time in seconds within the audio track.',
       required: true,
       defaultValue: 0,
-      min: 0,
     }),
     end_seconds: Property.Number({
       displayName: 'End Time',
       description: 'End time in seconds. It must be after the start time.',
       required: true,
-      min: 0.1,
     }),
     generation_mode: Property.StaticDropdown({
       displayName: 'Motion Style',
@@ -49,18 +40,15 @@ export const talkingPhotoAction = createAction({
         'Realistic preserves likeness. Prompted allows additional scene direction.',
       required: true,
       defaultValue: 'realistic',
-      display: 'cards',
       options: {
         options: [
           {
             label: 'Realistic',
             value: 'realistic',
-            description: 'High likeness and reliable motion',
           },
           {
             label: 'Prompted',
             value: 'prompted',
-            description: 'Guide the scene with a prompt',
           },
         ],
       },
@@ -87,7 +75,6 @@ export const talkingPhotoAction = createAction({
       displayName: 'Project Name',
       description: 'Optional name shown in the Magic Hour project list.',
       required: false,
-      advanced: true,
     }),
   },
   async run(context) {
