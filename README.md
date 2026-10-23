@@ -22,9 +22,11 @@ Create an API key in the [Magic Hour Developer Hub](https://magichour.ai/develop
 
 ## Install
 
-Download the `.tgz` file from the [latest release](https://github.com/magichourhq/activepieces-magic-hour/releases/latest), then upload it from **Platform Admin -> Setup -> Pieces -> Install Piece -> Upload File**.
+The current source contains unreleased credential-handling and TLS fixes. Do not use the existing v0.1.0 archive for credentialed workflows; an updated release is pending.
 
-Public npm installation under `@magichourhq/piece-magic-hour` will be available after the package is published to npm.
+On Activepieces editions with private-piece upload enabled, install an updated `.tgz` from **Platform Admin -> Pieces -> Install Piece -> Upload File**. Community Edition 0.92.3 does not enable archive upload; its supported installation option is **NPM Registry**, which requires a published package.
+
+Public npm installation under `@magichourhq/piece-magic-hour` will be available after the package is published to npm. See the [Activepieces piece-management guide](https://www.activepieces.com/docs/admin-guide/guides/manage-pieces).
 
 ## Development
 
@@ -33,7 +35,7 @@ npm install
 npm run build
 ```
 
-The release archive is designed for direct upload to an Activepieces instance.
+Release archives require an Activepieces edition with private-piece upload enabled.
 
 ## License
 
