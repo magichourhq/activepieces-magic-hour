@@ -35,9 +35,13 @@ export const magicHour = createPiece({
     createCustomApiCallAction({
       baseUrl: () => MAGIC_HOUR_BASE_URL,
       auth: magicHourAuth,
-      authMapping: async (auth) => ({
-        Authorization: `Bearer ${auth.secret_text}`,
-      }),
+      authMapping: async (auth, propsValue) => {
+        const url = new URL(propsValue['url']['url'], `${MAGIC_HOUR_BASE_URL}/`);
+        if (url.origin !== 'https://api.magichour.ai') {
+          throw new Error('Custom API calls must use https://api.magichour.ai.');
+        }
+        return { Authorization: `Bearer ${auth.secret_text}` };
+      },
     }),
   ],
   triggers: [],
