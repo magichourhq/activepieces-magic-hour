@@ -26,7 +26,7 @@ async function call<T extends HttpMessageBody>({
       url.searchParams.append(key, String(value));
     }
   }
-  const data = body === undefined ? undefined : JSON.stringify(body);
+  const data = method === HttpMethod.GET || body === undefined ? undefined : JSON.stringify(body);
 
   return new Promise<T>((resolve, reject) => {
     const req = request(
