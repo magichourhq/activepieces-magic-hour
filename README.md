@@ -12,13 +12,13 @@ An installable Activepieces piece for the [Magic Hour API](https://docs.magichou
 - Swap faces in photos
 - Create talking-photo videos
 - Read image, video, or audio project status and download URLs
-- Call any Magic Hour API endpoint through the custom API action
+- Call Magic Hour JSON API endpoints through the custom API action, using a relative path, method, optional query parameters, and JSON body
 
 Generation is asynchronous. Creation actions return a project ID. Use Get Project with the corresponding media type until the project reaches a terminal status, then use its download URLs.
 
 ## Authentication
 
-Create an API key in the [Magic Hour Developer Hub](https://magichour.ai/developer). The key is stored as an Activepieces secret and sent only as a bearer token to `https://api.magichour.ai/v1`.
+Create an API key in the [Magic Hour Developer Hub](https://magichour.ai/developer). The key is stored as an Activepieces secret and sent only as a bearer token to `https://api.magichour.ai/v1`. Requests enforce TLS certificate verification and do not follow redirects. The custom action accepts JSON only; arbitrary destinations, custom authorization headers, raw/form-data bodies, binary responses, and proxy settings are not supported.
 
 ## Install
 

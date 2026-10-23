@@ -1,7 +1,7 @@
-import { createCustomApiCallAction } from '@activepieces/pieces-common';
 import { createPiece } from '@activepieces/pieces-framework';
 import { PieceCategory } from '@activepieces/shared';
 import { createImageAction } from './lib/actions/create-image';
+import { customApiCallAction } from './lib/actions/custom-api-call';
 import { editImageAction } from './lib/actions/edit-image';
 import { faceSwapPhotoAction } from './lib/actions/face-swap-photo';
 import { generateUploadUrlsAction } from './lib/actions/generate-upload-urls';
@@ -11,7 +11,6 @@ import { imageToVideoAction } from './lib/actions/image-to-video';
 import { talkingPhotoAction } from './lib/actions/talking-photo';
 import { textToVideoAction } from './lib/actions/text-to-video';
 import { magicHourAuth } from './lib/auth';
-import { MAGIC_HOUR_BASE_URL } from './lib/common/client';
 
 export const magicHour = createPiece({
   displayName: 'Magic Hour',
@@ -32,17 +31,7 @@ export const magicHour = createPiece({
     faceSwapPhotoAction,
     talkingPhotoAction,
     getProjectAction,
-    createCustomApiCallAction({
-      baseUrl: () => MAGIC_HOUR_BASE_URL,
-      auth: magicHourAuth,
-      authMapping: async (auth, propsValue) => {
-        const url = new URL(propsValue['url']['url'], `${MAGIC_HOUR_BASE_URL}/`);
-        if (url.origin !== 'https://api.magichour.ai') {
-          throw new Error('Custom API calls must use https://api.magichour.ai.');
-        }
-        return { Authorization: `Bearer ${auth.secret_text}` };
-      },
-    }),
+    customApiCallAction,
   ],
   triggers: [],
 });
