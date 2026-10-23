@@ -17,7 +17,7 @@ export const magicHour = createPiece({
   description:
     'Generate and edit images, videos, and audio with the Magic Hour API.',
   minimumSupportedRelease: '0.82.0',
-  logoUrl: 'https://magichour.ai/logo.svg',
+  logoUrl: 'https://docs.magichour.ai/icons/favicon.png',
   categories: [PieceCategory.ARTIFICIAL_INTELLIGENCE],
   auth: magicHourAuth,
   authors: ['runshouse'],
