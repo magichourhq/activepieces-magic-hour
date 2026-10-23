@@ -22,7 +22,7 @@ Create an API key in the [Magic Hour Developer Hub](https://magichour.ai/develop
 
 ## Install
 
-The current source contains unreleased credential-handling and TLS fixes. Do not use the existing v0.1.0 archive for credentialed workflows; an updated release is pending.
+The v0.1.0 archive lacks the credential-handling and TLS fixes in current source. Do not use it for credentialed workflows.
 
 On Activepieces editions with private-piece upload enabled, install an updated `.tgz` from **Platform Admin -> Pieces -> Install Piece -> Upload File**. Community Edition 0.92.3 does not enable archive upload; its supported installation option is **NPM Registry**, which requires a published package.
 
