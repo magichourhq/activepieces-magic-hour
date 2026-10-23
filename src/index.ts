@@ -1,7 +1,7 @@
-import { createCustomApiCallAction } from '@activepieces/pieces-common';
 import { createPiece } from '@activepieces/pieces-framework';
 import { PieceCategory } from '@activepieces/shared';
 import { createImageAction } from './lib/actions/create-image';
+import { customApiCallAction } from './lib/actions/custom-api-call';
 import { editImageAction } from './lib/actions/edit-image';
 import { faceSwapPhotoAction } from './lib/actions/face-swap-photo';
 import { generateUploadUrlsAction } from './lib/actions/generate-upload-urls';
@@ -11,14 +11,13 @@ import { imageToVideoAction } from './lib/actions/image-to-video';
 import { talkingPhotoAction } from './lib/actions/talking-photo';
 import { textToVideoAction } from './lib/actions/text-to-video';
 import { magicHourAuth } from './lib/auth';
-import { MAGIC_HOUR_BASE_URL } from './lib/common/client';
 
 export const magicHour = createPiece({
   displayName: 'Magic Hour',
   description:
     'Generate and edit images, videos, and audio with the Magic Hour API.',
   minimumSupportedRelease: '0.82.0',
-  logoUrl: 'https://magichour.ai/logo.svg',
+  logoUrl: 'https://docs.magichour.ai/icons/favicon.png',
   categories: [PieceCategory.ARTIFICIAL_INTELLIGENCE],
   auth: magicHourAuth,
   authors: ['runshouse'],
@@ -32,13 +31,7 @@ export const magicHour = createPiece({
     faceSwapPhotoAction,
     talkingPhotoAction,
     getProjectAction,
-    createCustomApiCallAction({
-      baseUrl: () => MAGIC_HOUR_BASE_URL,
-      auth: magicHourAuth,
-      authMapping: async (auth) => ({
-        Authorization: `Bearer ${auth.secret_text}`,
-      }),
-    }),
+    customApiCallAction,
   ],
   triggers: [],
 });
