@@ -26,7 +26,7 @@ The v0.1.0 archive lacks the credential-handling and TLS fixes in current source
 
 On Activepieces editions with private-piece upload enabled, use the [v0.1.1 `.tgz` archive](https://github.com/magichourhq/activepieces-magic-hour/releases/download/v0.1.1/magichourhq-piece-magic-hour-0.1.1.tgz) from the [secure GitHub release](https://github.com/magichourhq/activepieces-magic-hour/releases/tag/v0.1.1) through **Platform Admin -> Pieces -> Install Piece -> Upload File**. Community Edition 0.92.3 does not enable archive upload; its supported installation option is **NPM Registry**, which requires a published package.
 
-Public npm installation under `@magichourhq/piece-magic-hour` will be available after the package is published to npm. See the [Activepieces piece-management guide](https://www.activepieces.com/docs/admin-guide/guides/manage-pieces).
+Install the published [npm package](https://www.npmjs.com/package/@magichourhq/piece-magic-hour/v/0.1.1) through **Platform Admin -> Catalogue -> Pieces -> Install Piece -> NPM Registry**. Enter `@magichourhq/piece-magic-hour` as the package name and `0.1.1` as the version. This route supports Community Edition 0.92.3. See the [Activepieces piece-management guide](https://www.activepieces.com/docs/admin-guide/guides/manage-pieces).
 
 ## Development
 
