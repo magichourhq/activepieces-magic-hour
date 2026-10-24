@@ -24,7 +24,7 @@ Create an API key in the [Magic Hour Developer Hub](https://magichour.ai/develop
 
 The v0.1.0 archive lacks the credential-handling and TLS fixes in current source. Do not use it for credentialed workflows.
 
-On Activepieces editions with private-piece upload enabled, install an updated `.tgz` from **Platform Admin -> Pieces -> Install Piece -> Upload File**. Community Edition 0.92.3 does not enable archive upload; its supported installation option is **NPM Registry**, which requires a published package.
+On Activepieces editions with private-piece upload enabled, use the [v0.1.1 `.tgz` archive](https://github.com/magichourhq/activepieces-magic-hour/releases/download/v0.1.1/magichourhq-piece-magic-hour-0.1.1.tgz) from the [secure GitHub release](https://github.com/magichourhq/activepieces-magic-hour/releases/tag/v0.1.1) through **Platform Admin -> Pieces -> Install Piece -> Upload File**. Community Edition 0.92.3 does not enable archive upload; its supported installation option is **NPM Registry**, which requires a published package.
 
 Public npm installation under `@magichourhq/piece-magic-hour` will be available after the package is published to npm. See the [Activepieces piece-management guide](https://www.activepieces.com/docs/admin-guide/guides/manage-pieces).
 
