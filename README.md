@@ -1,5 +1,7 @@
 # Magic Hour for Activepieces
 
+[![npm](https://img.shields.io/npm/v/@magichourhq/piece-magic-hour)](https://www.npmjs.com/package/@magichourhq/piece-magic-hour)
+
 An installable Activepieces piece for the [Magic Hour API](https://docs.magichour.ai/). It exposes Magic Hour image and video generation to visual workflows and Activepieces MCP agents.
 
 ## Actions
@@ -22,11 +24,9 @@ Create an API key in the [Magic Hour Developer Hub](https://magichour.ai/develop
 
 ## Install
 
-The v0.1.0 archive lacks the credential-handling and TLS fixes in current source. Do not use it for credentialed workflows.
+Install the [npm package](https://www.npmjs.com/package/@magichourhq/piece-magic-hour) through **Platform Admin -> Catalogue -> Pieces -> Install Piece -> NPM Registry**. Enter `@magichourhq/piece-magic-hour` as the package name and the current version from the npm badge above. This route works on Community Edition. See the [Activepieces piece-management guide](https://www.activepieces.com/docs/admin-guide/guides/manage-pieces).
 
-On Activepieces editions with private-piece upload enabled, use the [v0.1.1 `.tgz` archive](https://github.com/magichourhq/activepieces-magic-hour/releases/download/v0.1.1/magichourhq-piece-magic-hour-0.1.1.tgz) from the [secure GitHub release](https://github.com/magichourhq/activepieces-magic-hour/releases/tag/v0.1.1) through **Platform Admin -> Pieces -> Install Piece -> Upload File**. Community Edition 0.92.3 does not enable archive upload; its supported installation option is **NPM Registry**, which requires a published package.
-
-Install the published [npm package](https://www.npmjs.com/package/@magichourhq/piece-magic-hour/v/0.1.1) through **Platform Admin -> Catalogue -> Pieces -> Install Piece -> NPM Registry**. Enter `@magichourhq/piece-magic-hour` as the package name and `0.1.1` as the version. This route supports Community Edition 0.92.3. See the [Activepieces piece-management guide](https://www.activepieces.com/docs/admin-guide/guides/manage-pieces).
+On editions with private-piece upload enabled, you can instead upload the `.tgz` archive attached to the [latest GitHub release](https://github.com/magichourhq/activepieces-magic-hour/releases/latest) through **Platform Admin -> Pieces -> Install Piece -> Upload File**. Don't use the v0.1.0 archive: it lacks the credential-handling and TLS fixes.
 
 ## Development
 
@@ -35,7 +35,7 @@ yarn install
 yarn build
 ```
 
-Release archives require an Activepieces edition with private-piece upload enabled.
+To release, bump the version in `package.json` in a PR. Merging it to `main` publishes to npm and creates the GitHub release with the `.tgz` archive.
 
 ## License
 
