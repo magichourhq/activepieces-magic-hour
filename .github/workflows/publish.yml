@@ -1,0 +1,80 @@
+# Publishes to npm with trusted publishing when the package.json version changes on main.
+# Release by merging a PR that bumps the version. Prerelease versions such as 0.2.0-dev.1
+# go to the matching dist-tag (dev) instead of latest.
+name: Publish to npm
+
+on:
+  push:
+    branches: [main]
+    paths: [package.json]
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # Required to create the GitHub release
+      id-token: write # Required for npm trusted publishing and provenance
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 2
+          persist-credentials: false
+      - name: Check if package.json version changed
+        run: |
+          OLD_VERSION=$(git show HEAD~1:package.json | jq -r .version)
+          VERSION=$(jq -r .version package.json)
+          CHANGED=false
+          if [ "$OLD_VERSION" != "$VERSION" ]; then
+            CHANGED=true
+          fi
+          DIST_TAG=latest
+          case "$VERSION" in
+            *-*)
+              PRERELEASE=${VERSION#*-}
+              DIST_TAG=${PRERELEASE%%.*}
+              ;;
+          esac
+          {
+            echo "CHANGED=$CHANGED"
+            echo "VERSION=$VERSION"
+            echo "DIST_TAG=$DIST_TAG"
+          } >> "$GITHUB_ENV"
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        if: env.CHANGED == 'true'
+        with:
+          node-version: "24"
+          registry-url: "https://registry.npmjs.org"
+          package-manager-cache: false
+      - if: env.CHANGED == 'true'
+        run: yarn install --immutable
+      - if: env.CHANGED == 'true'
+        run: yarn build
+      - if: env.CHANGED == 'true'
+        # Keep npm's archive name, which the README links to for private-piece upload.
+        run: |
+          yarn pack
+          cp package.tgz "magichourhq-piece-magic-hour-$VERSION.tgz"
+      - name: Create GitHub release
+        if: env.CHANGED == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          TAG="v$VERSION"
+          if gh release view "$TAG" --repo "$GITHUB_REPOSITORY" > /dev/null 2>&1; then
+            exit 0
+          fi
+          PRERELEASE_FLAG=()
+          if [ "$DIST_TAG" != "latest" ]; then
+            PRERELEASE_FLAG=(--prerelease)
+          fi
+          gh release create "$TAG" "magichourhq-piece-magic-hour-$VERSION.tgz" \
+            --repo "$GITHUB_REPOSITORY" \
+            --target "$GITHUB_SHA" \
+            --title "$TAG" \
+            --generate-notes \
+            "${PRERELEASE_FLAG[@]}"
+      - if: env.CHANGED == 'true'
+        run: npm publish package.tgz --tag "$DIST_TAG"
