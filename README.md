@@ -31,8 +31,8 @@ Install the published [npm package](https://www.npmjs.com/package/@magichourhq/p
 ## Development
 
 ```bash
-npm install
-npm run build
+yarn install
+yarn build
 ```
 
 Release archives require an Activepieces edition with private-piece upload enabled.
