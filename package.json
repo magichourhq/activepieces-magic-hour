@@ -1,6 +1,7 @@
 {
   "name": "@magichourhq/piece-magic-hour",
-  "version": "0.1.3",
+  "version": "0.1.4",
+  "description": "Activepieces piece for Magic Hour: generate and edit images and videos with the Magic Hour API",
   "packageManager": "yarn@4.18.0",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
